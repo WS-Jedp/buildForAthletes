@@ -1,3 +1,1 @@
-const helloWorld: string = 'Hello from Build For Athletes'
-
-console.log(helloWorld)
+import { Basketball } from './models/base/sports'

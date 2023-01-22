@@ -1,4 +1,9 @@
-
+type ConditionalCapabilitiesProperties = {
+    strength: number,
+    endurance: number,
+    flexibility: number,
+    speed: number
+}
 
 class ConditionalCapabilities {
     public strength: number
@@ -6,12 +11,7 @@ class ConditionalCapabilities {
     public flexibility: number
     public speed: number
 
-    public constructor(capabilities: {
-        strength: number,
-        endurance: number,
-        flexibility: number,
-        speed: number
-    } ) {
+    public constructor(capabilities: ConditionalCapabilitiesProperties) {
         this.strength = capabilities.strength
         this.endurance = capabilities.endurance
         this.flexibility = capabilities.flexibility
@@ -20,5 +20,6 @@ class ConditionalCapabilities {
 }
 
 export {
-    ConditionalCapabilities
+    ConditionalCapabilities,
+    ConditionalCapabilitiesProperties
 }

@@ -9,6 +9,20 @@ type CoordinativeCapability = {
   value: number
 }
 
+type CoordinativeCapabilitiesProperties = {
+  movementControl: number
+  adaptation: number
+  orientation: number
+  balance: number
+  rhythm: number
+  selfAnticipation: number
+  externalAnticipation: number
+  diferentation: number
+  coordination: number
+  agility: number
+  motorLearning: number
+}
+
 class CoordinativeCapabilities {
   // General capabilities
   public movementControl: CoordinativeCapability
@@ -27,19 +41,7 @@ class CoordinativeCapabilities {
   public agility: CoordinativeCapability
   public motorLearning: CoordinativeCapability
 
-  public constructor(capabilities: {
-    movementControl: number
-    adaptation: number
-    orientation: number
-    balance: number
-    rhythm: number
-    selfAnticipation: number
-    externalAnticipation: number
-    diferentation: number
-    coordination: number
-    agility: number
-    motorLearning: number
-  }) {
+  public constructor(capabilities: CoordinativeCapabilitiesProperties) {
     this.movementControl = {
       category: COORDINATIVE_CAPABILITIES_CATEGORIES.GENERAL,
       value: capabilities.movementControl,
@@ -91,4 +93,9 @@ class CoordinativeCapabilities {
   }
 }
 
-export { CoordinativeCapabilities, COORDINATIVE_CAPABILITIES_CATEGORIES, CoordinativeCapability }
+export {
+  CoordinativeCapabilities,
+  COORDINATIVE_CAPABILITIES_CATEGORIES,
+  CoordinativeCapability,
+  CoordinativeCapabilitiesProperties
+}

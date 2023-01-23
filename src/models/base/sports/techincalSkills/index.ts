@@ -6,7 +6,7 @@ enum SPORT_TECHNICAL_SKILL_CATEGORIES {
 }
 
 type SportTechnicalSkill = {
-    overall: number
+    overall?: number
     category?: SPORT_TECHNICAL_SKILL_CATEGORIES
 }
 

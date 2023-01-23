@@ -1,23 +1,30 @@
-import { ConditionalCapabilities, ConditionalCapabilitiesProperties } from 'models/base/athleticism/base/conditionalCapabilities'
-import { CoordinativeCapabilities, CoordinativeCapabilitiesProperties } from 'models/base/athleticism/base/coordinativeCapabilities';
+import { ConditionalCapabilities } from 'models/base/athleticism/base/conditionalCapabilities'
+import { CoordinativeCapabilities } from 'models/base/athleticism/base/coordinativeCapabilities'
 import { User } from 'models/base/users'
-import { Athlete } from '../base'
+import { BasketballGeneralSkills, BasketballPhysicalSkills, BasketballTechnicalSkills } from '../../sports/specific/basketball/skills'
+import { Athlete, AthleteProperties } from '../base'
 
-class BasketballAthlete implements Athlete {
+class BasketballAthlete {
 
-    public user: User
-    public conditionalCapabilities?: ConditionalCapabilities | undefined;
-    public coordinativeCapabilities?: CoordinativeCapabilities | undefined;
+    protected athleteBasketballGeneralSkills?: BasketballGeneralSkills
+    protected athleteBasketballTechnicalSkills?: BasketballTechnicalSkills
+    protected athleteBasketballPhysicalSkills?: BasketballPhysicalSkills
 
-    public constructor(user: User, capabilities?: {
-        conditional?: ConditionalCapabilitiesProperties,
-        coordinatives?: CoordinativeCapabilitiesProperties
-    }) {
-        this.user = user
-        this.conditionalCapabilities = capabilities?.conditional && new ConditionalCapabilities(capabilities.conditional)
-        this.coordinativeCapabilities = capabilities?.coordinatives && new CoordinativeCapabilities(capabilities?.coordinatives)
+    protected athlete?: Athlete
+
+    public constructor( skills: {
+        general: BasketballGeneralSkills,
+        technical: BasketballTechnicalSkills,
+        physical: BasketballPhysicalSkills
+    }, athlete?: Athlete) {
+        this.athleteBasketballGeneralSkills = skills.general
+        this.athleteBasketballTechnicalSkills = skills.technical
+        this.athleteBasketballPhysicalSkills = skills.physical
+        this.athlete = athlete
     }
 }
+
+// const juan = new BasketballAthlete()
 
 export {
     BasketballAthlete

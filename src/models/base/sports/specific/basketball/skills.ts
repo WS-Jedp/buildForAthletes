@@ -35,7 +35,6 @@ type BasketballTechnicalSkills = {
         block: number
         offensiveRebounding: number
         defensiveRebounding: number
-        overall: number
     }
 }
 

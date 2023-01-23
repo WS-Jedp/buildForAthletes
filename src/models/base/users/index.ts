@@ -1,3 +1,4 @@
+import { Athlete } from '../athetles/base'
 import { Person } from '../people'
 
 class User extends Person {
@@ -5,6 +6,7 @@ class User extends Person {
     nickname?: string
     email: string
     password: string
+    protected athlete?: Athlete
 
     public constructor(user: {
         username: string
@@ -22,7 +24,15 @@ class User extends Person {
         this.email = user.email
         this.password = user.password
     }
-}
+
+    public setAthlete(athleteData: Athlete) {
+        this.athlete = athleteData
+    }
+    public getAthlete(): Athlete | null {
+        if(!this.athlete) return null
+        return this.athlete
+    }
+ }
 
 export {
     User

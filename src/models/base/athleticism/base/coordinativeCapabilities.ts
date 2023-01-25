@@ -6,21 +6,21 @@ enum COORDINATIVE_CAPABILITIES_CATEGORIES {
 
 type CoordinativeCapability = {
   category: COORDINATIVE_CAPABILITIES_CATEGORIES
-  value: number
+  value?: number
 }
 
 type CoordinativeCapabilitiesProperties = {
-  movementControl: number
-  adaptation: number
-  orientation: number
-  balance: number
-  rhythm: number
-  selfAnticipation: number
-  externalAnticipation: number
-  diferentation: number
-  coordination: number
-  agility: number
-  motorLearning: number
+  movementControl?: number
+  adaptation?: number
+  orientation?: number
+  balance?: number
+  rhythm?: number
+  selfAnticipation?: number
+  externalAnticipation?: number
+  diferentation?: number
+  coordination?: number
+  agility?: number
+  motorLearning?: number
 }
 
 class CoordinativeCapabilities {

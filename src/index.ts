@@ -1,7 +1,8 @@
 import { Athlete } from 'models/base/athetles/base'
-import { BasketballAthlete } from 'models/base/athetles/specific/basketballAthlete'
+import { BasketballAthlete } from 'models/base/athetles/specific/basketball/basketballAthlete'
 import { ConditionalCapabilities } from 'models/base/athleticism/base/conditionalCapabilities'
 import { CoordinativeCapabilities } from 'models/base/athleticism/base/coordinativeCapabilities'
+import { Person } from 'models/base/people'
 import { Basketball } from './models/base/sports'
 import { User } from './models/base/users'
 
@@ -34,5 +35,23 @@ import { User } from './models/base/users'
             selfAnticipation: 90
         })
     })
+
+    const basketballAthlete = new BasketballAthlete({
+        general: {
+            communication: 90,
+            resilience: 90,
+        }, physical: {
+            acceleration: undefined,
+            footWork: undefined,
+            horizontalJump: undefined,
+            verticalJump: undefined
+        }, technical: {
+            defense: {},
+            finishing: {},
+            playmaking: {},
+            shooting: {}
+        }
+    })
+
     return Basketball.getDescription()
 })

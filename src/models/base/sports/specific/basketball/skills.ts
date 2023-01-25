@@ -12,29 +12,29 @@ const basketballGeneralSkills: BasketballGeneralSkills = {
 
 type BasketballTechnicalSkills = {
     shooting: SportTechnicalSkill & {
-        midRange: number
-        threePoint: number
-        freeThrow: number
+        midRange?: number
+        threePoint?: number
+        freeThrow?: number
     }
     finishing: SportTechnicalSkill & {
-        closeShot: number
-        layup: number
-        dunk: number
-        postControl: number
+        closeShot?: number
+        layup?: number
+        dunk?: number
+        postControl?: number
     }
     playmaking: SportTechnicalSkill & {
-        passAccuracy: number
-        ballHandling: number
-        speedWithBall: number
-        vision: number
+        passAccuracy?: number
+        ballHandling?: number
+        speedWithBall?: number
+        vision?: number
     }
     defense: SportTechnicalSkill & {
-        interiorDefense: number
-        perimeterDefense: number
-        steal: number
-        block: number
-        offensiveRebounding: number
-        defensiveRebounding: number
+        interiorDefense?: number
+        perimeterDefense?: number
+        steal?: number
+        block?: number
+        offensiveRebounding?: number
+        defensiveRebounding?: number
     }
 }
 
@@ -75,10 +75,10 @@ const basketballTechnicalSkills:BasketballTechnicalSkills = {
 }
 
 type BasketballPhysicalSkills = {
-    verticalJump: number
-    horizontalJump: number
-    acceleration: number
-    footWork: number
+    verticalJump?: number
+    horizontalJump?: number
+    acceleration?: number
+    footWork?: number
 }
 
 const basketballPhysicalSkills: BasketballPhysicalSkills = {

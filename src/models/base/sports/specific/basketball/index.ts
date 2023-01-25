@@ -21,7 +21,7 @@ class Basketball extends Sport<BasketballGeneralSkills, BasketballTechnicalSkill
             generalSkills: basketballGeneralSkills,
             technicalSkills: basketballTechnicalSkills,
             physicalSkils: basketballPhysicalSkills
-        }, )
+        })
     }
 }
 

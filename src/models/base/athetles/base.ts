@@ -1,7 +1,7 @@
 import { User } from '../users'
 import { ConditionalCapabilities } from '../athleticism/base/conditionalCapabilities'
 import { CoordinativeCapabilities } from '../athleticism/base/coordinativeCapabilities'
-import { BasketballAthlete } from './specific/basketballAthlete'
+import { BasketballAthlete } from './specific/basketball/basketballAthlete'
 
 type AthleteProperties = {
     conditional: ConditionalCapabilities,
@@ -9,8 +9,8 @@ type AthleteProperties = {
 }
 class Athlete {
     protected user?: User
-    conditionalCapabilities?: ConditionalCapabilities
-    coordinativeCapabilities?: CoordinativeCapabilities
+    conditionalCapabilities: ConditionalCapabilities
+    coordinativeCapabilities: CoordinativeCapabilities
     sports: {
         basketball?: BasketballAthlete
         voleyball?: undefined

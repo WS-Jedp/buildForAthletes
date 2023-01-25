@@ -1,15 +1,15 @@
 type ConditionalCapabilitiesProperties = {
-    strength: number,
-    endurance: number,
-    flexibility: number,
-    speed: number
+    strength?: number,
+    endurance?: number,
+    flexibility?: number,
+    speed?: number
 }
 
 class ConditionalCapabilities {
-    public strength: number
-    public endurance: number
-    public flexibility: number
-    public speed: number
+    public strength?: number
+    public endurance?: number
+    public flexibility?: number
+    public speed?: number
 
     public constructor(capabilities: ConditionalCapabilitiesProperties) {
         this.strength = capabilities.strength

@@ -36,22 +36,22 @@ import { User } from './models/base/users'
         })
     })
 
-    const basketballAthlete = new BasketballAthlete({
-        general: {
-            communication: 90,
-            resilience: 90,
-        }, physical: {
-            acceleration: undefined,
-            footWork: undefined,
-            horizontalJump: undefined,
-            verticalJump: undefined
-        }, technical: {
-            defense: {},
-            finishing: {},
-            playmaking: {},
-            shooting: {}
-        }
-    })
+    // const basketballAthlete = new BasketballAthlete({
+    //     general: {
+    //         communication: 90,
+    //         resilience: 90,
+    //     }, physical: {
+    //         acceleration: undefined,
+    //         footWork: undefined,
+    //         horizontalJump: undefined,
+    //         verticalJump: undefined
+    //     }, technical: {
+    //         defense: {},
+    //         finishing: {},
+    //         playmaking: {},
+    //         shooting: {}
+    //     }
+    // })
 
     return Basketball.getDescription()
 })

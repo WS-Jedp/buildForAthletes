@@ -1,13 +1,17 @@
 import { SportType } from '../../base'
+import { SportGeneralSkill, SPORT_GENERAL_SKILL_CATEGORIES } from '../../../generalSkills'
 
 type IndividualSportSkills = {
-    resilience: number
+    resilience: SportGeneralSkill
 } 
 
 class IndividualSport extends SportType<IndividualSportSkills> {
     public constructor() {
         super('INDIVIDUAL_SPORT', {
-            resilience: 100
+            resilience: {
+                category: SPORT_GENERAL_SKILL_CATEGORIES.RANGE,
+                value: 100
+            }
         })
     }
 }

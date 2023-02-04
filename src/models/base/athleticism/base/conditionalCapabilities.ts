@@ -1,4 +1,5 @@
 type ConditionalCapabilitiesProperties = {
+    [key: string]: number | undefined
     strength?: number,
     endurance?: number,
     flexibility?: number,
@@ -16,6 +17,15 @@ class ConditionalCapabilities {
         this.endurance = capabilities.endurance
         this.flexibility = capabilities.flexibility
         this.speed = capabilities.speed
+    }
+
+    public getObject(): ConditionalCapabilitiesProperties {
+        return {
+            endurance: this.endurance,
+            flexibility: this.flexibility,
+            speed: this.speed,
+            strength: this.strength
+        }
     }
 }
 

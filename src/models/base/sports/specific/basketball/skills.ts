@@ -1,10 +1,12 @@
 
 import { IndividualSport, IndividualSportSkills, TeamSport, TeamSportsSkills } from '../../types/all'
 import { SPORT_TECHNICAL_SKILL_CATEGORIES, SportTechnicalSkill, OverallSportTechnicalSkill } from '../../techincalSkills'
-import { SPORT_GENERAL_SKILL_CATEGORIES } from '../../generalSkills'
+import { SportGeneralSkill, SPORT_GENERAL_SKILL_CATEGORIES } from '../../generalSkills'
 import { SPORT_PHYSICAL_SKILL_CATEGORIES, SPORT_PHYSICAL_MEASURE_FORMAT, SportPhysicalSkill } from '../../physicalSkills'
 
-type BasketballGeneralSkills = TeamSportsSkills & IndividualSportSkills
+type BasketballGeneralSkills = {
+    [key: string]: SportGeneralSkill
+} & TeamSportsSkills & IndividualSportSkills
 const BASKETBALL_SPORT_TYPES = [TeamSport.getName(), IndividualSport.getName()]
 
 
@@ -24,6 +26,10 @@ function newBasketballGeneralSkills( skills: newBasketballSkillsParameters): Bas
 
 
 type BasketballTechnicalSkills = {
+    [key: string]: OverallSportTechnicalSkill & {
+        [key: string]: SportTechnicalSkill | any
+    }
+} & {
     shooting: OverallSportTechnicalSkill & {
         midRange?: SportTechnicalSkill
         threePoint?: SportTechnicalSkill
@@ -90,6 +96,30 @@ function newBasketballTechnicalSkills( skills: newBasketballTechnicalSkillsParam
         defense: {
             category: SPORT_TECHNICAL_SKILL_CATEGORIES.OVERALL,
             overall: skills.defense.overall,
+            block: {
+                category: SPORT_TECHNICAL_SKILL_CATEGORIES.RANGE,
+                value: skills.defense.block
+            },
+            defensiveRebounding: {
+                category: SPORT_TECHNICAL_SKILL_CATEGORIES.RANGE,
+                value: skills.defense.defensiveRebounding
+            },
+            offensiveRebounding: {
+                category: SPORT_TECHNICAL_SKILL_CATEGORIES.RANGE,
+                value: skills.defense.offensiveRebounding
+            },
+            interiorDefense: {
+                category: SPORT_TECHNICAL_SKILL_CATEGORIES.RANGE,
+                value: skills.defense.interiorDefense
+            },
+            perimeterDefense: {
+                category: SPORT_TECHNICAL_SKILL_CATEGORIES.RANGE,
+                value: skills.defense.perimeterDefense
+            },
+            steal: {
+                category: SPORT_TECHNICAL_SKILL_CATEGORIES.RANGE,
+                value: skills.defense.steal
+            }
         },
         shooting: {
             category: SPORT_TECHNICAL_SKILL_CATEGORIES.OVERALL,
@@ -156,6 +186,8 @@ function newBasketballTechnicalSkills( skills: newBasketballTechnicalSkillsParam
 }
 
 type BasketballPhysicalSkills = {
+    [key: string]: SportPhysicalSkill 
+} & {
     verticalJump?: SportPhysicalSkill
     horizontalJump?: SportPhysicalSkill
     acceleration?: SportPhysicalSkill

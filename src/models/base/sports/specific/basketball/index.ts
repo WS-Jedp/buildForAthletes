@@ -1,15 +1,12 @@
 import { Sport }  from '../../base'
 import { basketballConditionalCapabilities, basketballCoordinativeCapabilities } from './capabilities'
 import {
-    basketballGeneralSkills, 
     BASKETBALL_SPORT_TYPES, 
-    basketballTechnicalSkills, 
     BasketballPhysicalSkills, 
     BasketballGeneralSkills, 
     BasketballTechnicalSkills, 
-    basketballPhysicalSkills 
 } from './skills'
-
+import { basketballGeneralSkills, basketballPhysicalSkills, basketballTechnicalSkills } from './requiredSkills'
 class Basketball extends Sport<BasketballGeneralSkills, BasketballTechnicalSkills, BasketballPhysicalSkills> {
     public constructor() {
         super({

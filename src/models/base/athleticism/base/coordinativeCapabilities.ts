@@ -10,6 +10,7 @@ type CoordinativeCapability = {
 }
 
 type CoordinativeCapabilitiesProperties = {
+  [key: string]: number | undefined
   movementControl?: number
   adaptation?: number
   orientation?: number
@@ -91,6 +92,22 @@ class CoordinativeCapabilities {
         value: capabilities.agility,
     }
   }
+
+  public getObject(): CoordinativeCapabilitiesProperties {
+    return {
+        adaptation: this.adaptation.value,
+        agility: this.adaptation.value,
+        balance: this.balance.value,
+        coordination: this.coordination.value,
+        diferentation: this.diferentation.value,
+        externalAnticipation: this.externalAnticipation.value,
+        motorLearning: this.motorLearning.value,
+        movementControl: this.movementControl.value,
+        orientation: this.orientation.value,
+        rhythm: this.rhythm.value,
+        selfAnticipation: this.selfAnticipation.value
+    }
+}
 }
 
 export {

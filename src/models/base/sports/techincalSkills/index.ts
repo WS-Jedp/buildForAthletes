@@ -1,16 +1,23 @@
 enum SPORT_TECHNICAL_SKILL_CATEGORIES {
     TIME = "TIME",
     ACCURACY = "ACCURACY",
+    PERCENTAGE = "PERCENTAGE",
     REPETITION = "REPETITION",
-    GENERAL = "GENERAL"
+    RANGE = "RANGE",
+    OVERALL = "OVERALL"
 }
 
+type OverallSportTechnicalSkill = {
+    overall?: number
+    category: SPORT_TECHNICAL_SKILL_CATEGORIES.OVERALL
+}
 type SportTechnicalSkill = {
-    overall: number
+    value?: number
     category?: SPORT_TECHNICAL_SKILL_CATEGORIES
 }
 
 export {
     SPORT_TECHNICAL_SKILL_CATEGORIES,
+    OverallSportTechnicalSkill,
     SportTechnicalSkill
 }

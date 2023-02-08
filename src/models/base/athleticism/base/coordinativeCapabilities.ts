@@ -6,7 +6,22 @@ enum COORDINATIVE_CAPABILITIES_CATEGORIES {
 
 type CoordinativeCapability = {
   category: COORDINATIVE_CAPABILITIES_CATEGORIES
-  value: number
+  value?: number
+}
+
+type CoordinativeCapabilitiesProperties = {
+  [key: string]: number | undefined
+  movementControl?: number
+  adaptation?: number
+  orientation?: number
+  balance?: number
+  rhythm?: number
+  selfAnticipation?: number
+  externalAnticipation?: number
+  diferentation?: number
+  coordination?: number
+  agility?: number
+  motorLearning?: number
 }
 
 class CoordinativeCapabilities {
@@ -27,19 +42,7 @@ class CoordinativeCapabilities {
   public agility: CoordinativeCapability
   public motorLearning: CoordinativeCapability
 
-  public constructor(capabilities: {
-    movementControl: number
-    adaptation: number
-    orientation: number
-    balance: number
-    rhythm: number
-    selfAnticipation: number
-    externalAnticipation: number
-    diferentation: number
-    coordination: number
-    agility: number
-    motorLearning: number
-  }) {
+  public constructor(capabilities: CoordinativeCapabilitiesProperties) {
     this.movementControl = {
       category: COORDINATIVE_CAPABILITIES_CATEGORIES.GENERAL,
       value: capabilities.movementControl,
@@ -89,6 +92,27 @@ class CoordinativeCapabilities {
         value: capabilities.agility,
     }
   }
+
+  public getObject(): CoordinativeCapabilitiesProperties {
+    return {
+        adaptation: this.adaptation.value,
+        agility: this.adaptation.value,
+        balance: this.balance.value,
+        coordination: this.coordination.value,
+        diferentation: this.diferentation.value,
+        externalAnticipation: this.externalAnticipation.value,
+        motorLearning: this.motorLearning.value,
+        movementControl: this.movementControl.value,
+        orientation: this.orientation.value,
+        rhythm: this.rhythm.value,
+        selfAnticipation: this.selfAnticipation.value
+    }
+}
 }
 
-export { CoordinativeCapabilities, COORDINATIVE_CAPABILITIES_CATEGORIES, CoordinativeCapability }
+export {
+  CoordinativeCapabilities,
+  COORDINATIVE_CAPABILITIES_CATEGORIES,
+  CoordinativeCapability,
+  CoordinativeCapabilitiesProperties
+}

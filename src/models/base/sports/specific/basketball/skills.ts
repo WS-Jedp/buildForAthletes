@@ -1,100 +1,240 @@
 
 import { IndividualSport, IndividualSportSkills, TeamSport, TeamSportsSkills } from '../../types/all'
-import { SPORT_TECHNICAL_SKILL_CATEGORIES, SportTechnicalSkill } from '../../techincalSkills'
+import { SPORT_TECHNICAL_SKILL_CATEGORIES, SportTechnicalSkill, OverallSportTechnicalSkill } from '../../techincalSkills'
+import { SportGeneralSkill, SPORT_GENERAL_SKILL_CATEGORIES } from '../../generalSkills'
+import { SPORT_PHYSICAL_SKILL_CATEGORIES, SPORT_PHYSICAL_MEASURE_FORMAT, SportPhysicalSkill } from '../../physicalSkills'
 
-type BasketballGeneralSkills = TeamSportsSkills & IndividualSportSkills
+type BasketballGeneralSkills = {
+    [key: string]: SportGeneralSkill
+} & TeamSportsSkills & IndividualSportSkills
 const BASKETBALL_SPORT_TYPES = [TeamSport.getName(), IndividualSport.getName()]
 
-const basketballGeneralSkills: BasketballGeneralSkills = {
-    communication: 90,
-    resilience: 80
+
+type newBasketballSkillsParameters = { communication: number, resilience: number }
+function newBasketballGeneralSkills( skills: newBasketballSkillsParameters): BasketballGeneralSkills {
+    return {
+        communication: {
+            category: SPORT_GENERAL_SKILL_CATEGORIES.RANGE,
+            value: skills.communication
+        },
+        resilience: {
+            category: SPORT_GENERAL_SKILL_CATEGORIES.RANGE,
+            value: skills.resilience
+        },
+    }
 }
+
 
 type BasketballTechnicalSkills = {
-    shooting: SportTechnicalSkill & {
-        midRange: number
-        threePoint: number
-        freeThrow: number
+    [key: string]: OverallSportTechnicalSkill & {
+        [key: string]: SportTechnicalSkill | any
     }
-    finishing: SportTechnicalSkill & {
-        closeShot: number
-        layup: number
-        dunk: number
-        postControl: number
+} & {
+    shooting: OverallSportTechnicalSkill & {
+        midRange?: SportTechnicalSkill
+        threePoint?: SportTechnicalSkill
+        freeThrow?: SportTechnicalSkill
     }
-    playmaking: SportTechnicalSkill & {
-        passAccuracy: number
-        ballHandling: number
-        speedWithBall: number
-        vision: number
+    finishing: OverallSportTechnicalSkill & {
+        closeShot?: SportTechnicalSkill
+        layup?: SportTechnicalSkill
+        dunk?: SportTechnicalSkill
+        postControl?: SportTechnicalSkill
+        floater?: SportTechnicalSkill
     }
-    defense: SportTechnicalSkill & {
-        interiorDefense: number
-        perimeterDefense: number
-        steal: number
-        block: number
-        offensiveRebounding: number
-        defensiveRebounding: number
-        overall: number
+    playmaking: OverallSportTechnicalSkill & {
+        passAccuracy?: SportTechnicalSkill
+        ballHandling?: SportTechnicalSkill
+        speedWithBall?: SportTechnicalSkill
+        vision?: SportTechnicalSkill
+    }
+    defense: OverallSportTechnicalSkill & {
+        interiorDefense?: SportTechnicalSkill
+        perimeterDefense?: SportTechnicalSkill
+        steal?: SportTechnicalSkill
+        block?: SportTechnicalSkill
+        offensiveRebounding?: SportTechnicalSkill
+        defensiveRebounding?: SportTechnicalSkill
     }
 }
 
-const basketballTechnicalSkills:BasketballTechnicalSkills = {
+
+type newBasketballTechnicalSkillsParameters = {
     shooting: {
-        category: SPORT_TECHNICAL_SKILL_CATEGORIES.ACCURACY,
-        midRange: 100,
-        freeThrow: 100,
-        threePoint: 100,
-        overall: 100
-    },
-    finishing: {
-        category: SPORT_TECHNICAL_SKILL_CATEGORIES.ACCURACY,
-        closeShot: 100,
-        dunk: 100,
-        layup: 100,
-        postControl: 100,
-        overall: 100
-    },
+        overall?: number
+        midRange?: number
+        threePoint?: number
+        freeThrow?: number
+    }
+    finishing:  {
+        overall?: number
+        closeShot?: number
+        layup?: number
+        dunk?: number
+        postControl?: number
+        floater?: number
+    }
     playmaking: {
-        category: SPORT_TECHNICAL_SKILL_CATEGORIES.GENERAL,
-        ballHandling: 100,
-        passAccuracy: 100,
-        speedWithBall: 100,
-        vision: 100,
-        overall: 100,
-    },
+        overall?: number
+        passAccuracy?: number
+        ballHandling?: number
+        speedWithBall?: number
+        vision?: number
+    }
     defense: {
-        category: SPORT_TECHNICAL_SKILL_CATEGORIES.GENERAL,
-        interiorDefense: 100,
-        perimeterDefense: 100,
-        steal: 100,
-        block: 100,
-        offensiveRebounding: 100,
-        defensiveRebounding: 100,
-        overall: 100
+        overall?: number
+        interiorDefense?: number
+        perimeterDefense?: number
+        steal?: number
+        block?: number
+        offensiveRebounding?: number
+        defensiveRebounding?: number
+    }
+}
+function newBasketballTechnicalSkills( skills: newBasketballTechnicalSkillsParameters): BasketballTechnicalSkills {
+    return {
+        defense: {
+            category: SPORT_TECHNICAL_SKILL_CATEGORIES.OVERALL,
+            overall: skills.defense.overall,
+            block: {
+                category: SPORT_TECHNICAL_SKILL_CATEGORIES.RANGE,
+                value: skills.defense.block
+            },
+            defensiveRebounding: {
+                category: SPORT_TECHNICAL_SKILL_CATEGORIES.RANGE,
+                value: skills.defense.defensiveRebounding
+            },
+            offensiveRebounding: {
+                category: SPORT_TECHNICAL_SKILL_CATEGORIES.RANGE,
+                value: skills.defense.offensiveRebounding
+            },
+            interiorDefense: {
+                category: SPORT_TECHNICAL_SKILL_CATEGORIES.RANGE,
+                value: skills.defense.interiorDefense
+            },
+            perimeterDefense: {
+                category: SPORT_TECHNICAL_SKILL_CATEGORIES.RANGE,
+                value: skills.defense.perimeterDefense
+            },
+            steal: {
+                category: SPORT_TECHNICAL_SKILL_CATEGORIES.RANGE,
+                value: skills.defense.steal
+            }
+        },
+        shooting: {
+            category: SPORT_TECHNICAL_SKILL_CATEGORIES.OVERALL,
+            overall: skills.shooting.overall,
+            freeThrow: {
+                category: SPORT_TECHNICAL_SKILL_CATEGORIES.RANGE,
+                value: skills.shooting.freeThrow
+            },
+            midRange: {
+                category: SPORT_TECHNICAL_SKILL_CATEGORIES.RANGE,
+                value: skills.shooting.midRange,
+            },
+            threePoint: {
+                category: SPORT_TECHNICAL_SKILL_CATEGORIES.RANGE,
+                value: skills.shooting.threePoint
+            }
+        },
+        finishing: {
+            category: SPORT_TECHNICAL_SKILL_CATEGORIES.OVERALL,
+            overall: skills.finishing.overall,
+            closeShot: {
+                category: SPORT_TECHNICAL_SKILL_CATEGORIES.RANGE,
+                value: skills.finishing.closeShot,
+            },
+            dunk: {
+                category: SPORT_TECHNICAL_SKILL_CATEGORIES.RANGE,
+                value: skills.finishing.dunk,
+            },
+            floater: {
+                category: SPORT_TECHNICAL_SKILL_CATEGORIES.RANGE,
+                value: skills.finishing.floater,
+            },
+            layup: {
+                category: SPORT_TECHNICAL_SKILL_CATEGORIES.RANGE,
+                value: skills.finishing.layup,
+            },
+            postControl: {
+                category: SPORT_TECHNICAL_SKILL_CATEGORIES.RANGE,
+                value: skills.finishing.postControl,
+            }
+        },
+        playmaking: {
+            category: SPORT_TECHNICAL_SKILL_CATEGORIES.OVERALL,
+            overall: skills.playmaking.overall,
+            ballHandling: {
+                category: SPORT_TECHNICAL_SKILL_CATEGORIES.RANGE,
+                value: skills.playmaking.ballHandling,
+            },
+            passAccuracy: {
+                category: SPORT_TECHNICAL_SKILL_CATEGORIES.ACCURACY,
+                value: skills.playmaking.passAccuracy
+            },
+            speedWithBall: {
+                category: SPORT_TECHNICAL_SKILL_CATEGORIES.RANGE,
+                value: skills.playmaking.speedWithBall
+            },
+            vision: {
+                category: SPORT_TECHNICAL_SKILL_CATEGORIES.RANGE,
+                value: skills.playmaking.vision
+            },
+            
+        }
     }
 }
 
 type BasketballPhysicalSkills = {
-    verticalJump: number
-    horizontalJump: number
-    acceleration: number
-    footWork: number
+    [key: string]: SportPhysicalSkill 
+} & {
+    verticalJump?: SportPhysicalSkill
+    horizontalJump?: SportPhysicalSkill
+    acceleration?: SportPhysicalSkill
+    footWork?: SportPhysicalSkill
 }
 
-const basketballPhysicalSkills: BasketballPhysicalSkills = {
-    verticalJump: 100,
-    horizontalJump: 100,
-    acceleration: 100,
-    footWork: 100,
+type newBasketballPhysicalSkillsParameters = {
+    verticalJump?: number
+    horizontalJump?: number
+    acceleration?: number
+    footWork?: number
 }
+function newBasketballPhysicalSkills( skills: newBasketballPhysicalSkillsParameters): BasketballPhysicalSkills {
+    return {
+        verticalJump: {
+            category: SPORT_PHYSICAL_SKILL_CATEGORIES.ACCURACY,
+            measureFormat: SPORT_PHYSICAL_MEASURE_FORMAT.CENTIMETERS,
+            value: skills.verticalJump,
+        },
+        horizontalJump: {
+            category: SPORT_PHYSICAL_SKILL_CATEGORIES.ACCURACY,
+            measureFormat: SPORT_PHYSICAL_MEASURE_FORMAT.CENTIMETERS,
+            value: skills.horizontalJump,
+        },
+        acceleration: {
+            category: SPORT_PHYSICAL_SKILL_CATEGORIES.ACCURACY,
+            measureFormat: SPORT_PHYSICAL_MEASURE_FORMAT.KM_PER_HOUR,
+            value: skills.acceleration,
+        },
+        footWork: {
+            category: SPORT_PHYSICAL_SKILL_CATEGORIES.ACCURACY,
+            measureFormat: SPORT_PHYSICAL_MEASURE_FORMAT.RANGE,
+            value: skills.footWork
+        }
+    }
+}
+
 
 export {
     BasketballPhysicalSkills, 
     BasketballTechnicalSkills, 
     BasketballGeneralSkills,
-    basketballPhysicalSkills, 
-    basketballTechnicalSkills, 
     BASKETBALL_SPORT_TYPES, 
-    basketballGeneralSkills
+    newBasketballGeneralSkills,
+    newBasketballSkillsParameters,
+    newBasketballPhysicalSkills,
+    newBasketballPhysicalSkillsParameters,
+    newBasketballTechnicalSkills,
+    newBasketballTechnicalSkillsParameters
 }
